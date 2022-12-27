@@ -18,7 +18,7 @@ import TextBox from 'react-native-password-eye';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavigationActions } from "react-native-navigation";
 import AppButton from '../component/AppButton';
-import LoginNavigator from "../navigation/LoginNavigator";
+// import LoginNavigator from "../navigation/LoginNavigator";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required().label("UserName"),
@@ -116,7 +116,7 @@ openAlert=()=>{
           navigation.navigate("WelcomeScreen")}
         /> */}
        <AppButton title="Login"
-        onPress={()=> navigation.navigate('DashboardScreen')}></AppButton> 
+        onPress={()=> navigation.navigate('WelcomeScreen')}></AppButton> 
       </AppForm>
     </Screens>
   );

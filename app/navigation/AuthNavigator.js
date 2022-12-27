@@ -9,27 +9,23 @@ const Stack = createStackNavigator();
 
 const AuthNavigator = () => (
   <Stack.Navigator>
-    {/* <Stack.Screen
-      name="Welcome"
-      component={WelcomeScreen}
-      options={{ headerShown: false }}
-    /> */}
+   
     <Stack.Screen
       name="Login"
       options={{ headerShown: false }}
       component={LoginScreen}
     />
-
-    <Stack.Screen
+      <Stack.Screen
+            name="Welcome"
+            component={WelcomeScreen}
+            options={{ headerShown: false }}
+          />
+   
+      <Stack.Screen
       name="Dashboard"
       options={{ headerShown: false }}
       component={DashboardScreen}
     />
-      {/* <Stack.Screen
-      name="Dashboard"
-      options={{ headerShown: false }}
-      component={DashboardScreen}
-    /> */}
   </Stack.Navigator>
 );
 
