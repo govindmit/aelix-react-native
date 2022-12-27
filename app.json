@@ -2,12 +2,17 @@
   "expo": {
     "name": "Aelix-Native",
     "slug": "Aelix-Native",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./app/assets/alex-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,16 +23,25 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.govind.mit.AelixNative",
+      "buildNumber": "1.0.0"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+       "package": "com.govind.mit.AelixNative",
+       "versionCode": 1
+    },
+    "description": "A Student and Councellor online Attendence management App.",
+    "notification": {
+      "iosDisplayInForeground": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f5dfb852-b2f6-49e9-bd90-cae62146aa16"
+      }
     }
   }
 }

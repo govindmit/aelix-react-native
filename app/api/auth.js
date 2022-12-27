@@ -1,0 +1,27 @@
+import React, { useEffect, useState } from 'react';
+import client from "./client";
+//import axios from 'axios';
+
+//const loginApp = () => {
+//const [data, setData] = useState([]);
+
+const login = (username, password) => 
+client.post("/login", {username, password }
+  )
+  // const {user, token} = response.data
+  .then(response => console.log(response.data));  
+
+export default {
+  login,
+};
+
+// const login = () => {
+// const item = { 
+//     username : "jhonmanager",
+//     password : "123456",
+//    };
+//   axios.post('/login', item)
+//       // .then(response =>setData(response.data));
+//       .then(response => console.log(response.data));
+// //};
+ //}
