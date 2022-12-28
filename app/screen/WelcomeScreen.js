@@ -5,58 +5,37 @@ import AppButton from '../component/AppButton';
 function WelcomeScreen({ navigation}) {
     return (
       
-         <ImageBackground 
-          //blurRadius ={1}
-         style ={styles.background}
-         source={require("../assets/Forgot.jpg")}>
-         
-         <View style ={styles.logoContainer}>
-         {/* <Image style={styles.logo} 
-         source={ require('../assets/alex-logo.png')} /> */}
-         {/* <Text style={styles.tagLine}>Welcome to Student and Counsellor Management ....! </Text> */}
+        <View style ={styles.background}>
+        <View style ={styles.logoContainer}>
+          <Image style={styles.logo} 
+         source={ require('../assets/Right.png')} /> 
+          <Text style={styles.tagLine}>Welcome jhonyBravo</Text> 
+         </View>
         </View>
 
-        <View style={styles.buttonContainer}>
-        {/* <AppButton title="Home" onPress={()=> navigation.navigate('Listing')}></AppButton> */}
-         {/* <AppButton title="Login" onPress={()=> navigation.navigate('Login')}></AppButton> */}
-         {/* <AppButton title="Register" color="secondary" onPress={()=>navigation.navigate('Register')}></AppButton> */}
-         {/* <View style={styles.registerButton}></View> */}
-
-        </View>
-      
-     </ImageBackground>   
-        
     );
 }
 const styles = StyleSheet.create({
     background : {
         flex :1,
-       justifyContent: 'flex-end',
-       alignItems: 'center'
-    },
-    buttonContainer :{
-    padding: 50,
-    width: '100%'
-    },
+        justifyContent: 'center',
+       alignItems: 'center',
+       backgroundColor:"#005CB3"
+     },
     tagLine : {
-    fontSize : 18,
+    fontSize : 35,
     fontWeight: "bold",
     padding: 20,
     color:'white'
     },
-    registerButton : {
-    width : '100%',
-    height : 70,
-    backgroundColor : '#4ecdc4'
-    },
-    logo : {
-    width : 100,
-    height : 100,
+     logo : {
+    width : 150,
+    height : 150,
     }, 
     logoContainer:{
-    position : 'absolute',
+    position : 'center',
     alignItems: 'center',
-    top : 70
+   // top : 200
     
 }
 })

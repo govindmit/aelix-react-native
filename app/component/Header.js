@@ -7,6 +7,7 @@ export default function Header({screen}){
  const navigation = useNavigation();
   return(
 <View style={headerStyles.container}>
+{/* <Text>hello</Text> */}
 <TouchableOpacity onPress={()=>navigation.toggleDrawer()}>
 <Entypo name="menu" size={24} color="black" />
 </TouchableOpacity>

@@ -1,11 +1,21 @@
 export default [
+    // <Image
+    //       style={styles.drawerImage}
+    //       source={{ uri:('https://reactnative.dev/img/tiny_logo.png')}} />
+    // {
+    //     image:<Image
+    //     style={styles.drawerImage}
+    //     source={{ uri:('https://reactnative.dev/img/tiny_logo.png')}} />
+    //     iconType:'Feather',
+    //     iconName:'settings'
+    // },      
     {
         name:'Dashboard', //Profile
         iconType:'Feather',
         iconName:'settings'
     },
     {
-        name:' MyProfile', //Settings
+        name:' My Profile', //Settings
         iconType:'Material',
         // iconName:'face-profile'
     },
@@ -25,7 +35,7 @@ export default [
         iconName:'settings'
     },
     {
-        name:'Change Pass',
+        name:'Change Password',
         iconType:'Material',
         iconName:'bookmark-check-outline'
     },

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Image, Text, Icon ,View, Alert} from "react-native";
+import { StyleSheet, Image, Text, Icon ,View, Button, Alert} from "react-native";
 import Screens from "../component/Screens";
-import WelcomeScreen from "../screen/WelcomeScreen";
 import * as Yup from "yup";
 import axios from 'axios'
 import {
@@ -18,7 +17,7 @@ import TextBox from 'react-native-password-eye';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavigationActions } from "react-native-navigation";
 import AppButton from '../component/AppButton';
-// import LoginNavigator from "../navigation/LoginNavigator";
+import AuthNavigator from "../navigation/AuthNavigator";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required().label("UserName"),
@@ -45,7 +44,14 @@ function LoginScreen({icon, navigation}) {
 openAlert=()=>{
   alert('Alert with one button');
 }
-
+timer=()=> {
+  setTimeout(() => {
+    navigation.navigate('Welcome');
+  }, 1000);
+  setTimeout(() => {
+    navigation.navigate('Home');
+  }, 10000);
+}
 // setTimeOut( () => {
 //   NavigationActions.navigate('WelcomeScreen');
 // }, 5000 );
@@ -97,7 +103,7 @@ openAlert=()=>{
            value={password}
           />
     */}
-       <View style={{ padding:10}} >
+       <View style={{ marginTop:20,marginBottom:20}} >
        <Text style={styles.text}>
         <CheckBox
           title='Click Here'
@@ -109,15 +115,18 @@ openAlert=()=>{
         </Text>
         </View>
        
-        {/* <SubmitButton
+        <SubmitButton
           title="Login"
-          onPress={() => 
-            //console.log("hello")
-          navigation.navigate("WelcomeScreen")}
-        /> */}
-       <AppButton title="Login"
-        onPress={()=> navigation.navigate('WelcomeScreen')}></AppButton> 
+          onPress={() => timer()}
+        />
+       {/* <AppButton title="Login"
+       onPress={() => timer()}></AppButton>  */}
       </AppForm>
+      <Button
+        title="Loginss"
+        onPress={() => navigation.navigate("Home")}
+      /> 
+     
     </Screens>
   );
 }
