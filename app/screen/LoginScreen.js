@@ -49,7 +49,7 @@ timer=()=> {
     navigation.navigate('Welcome');
   }, 1000);
   setTimeout(() => {
-    navigation.navigate('Home');
+    navigation.navigate('Tab');
   }, 10000);
 }
 // setTimeOut( () => {
@@ -115,16 +115,18 @@ timer=()=> {
         </Text>
         </View>
        
-        <SubmitButton
+        {/* <SubmitButton
           title="Login"
           onPress={() => timer()}
-        />
+        /> */}
        {/* <AppButton title="Login"
-       onPress={() => timer()}></AppButton>  */}
+       onPress={() => timer()}>
+       </AppButton>  */}
       </AppForm>
-      <Button
+      
+         <Button
         title="Loginss"
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate("Tab")}
       /> 
      
     </Screens>

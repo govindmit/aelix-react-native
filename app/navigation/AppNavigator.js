@@ -8,38 +8,43 @@ import navigation from "./rootNavigation";
 import ContactScreen from '../screen/ContactScreen';
 import HomeScreen from '../screen/HomeScreen';
 import AboutScreen from '../screen/AboutScreen';
+import PinScreen from '../screen/PinScreen';
 
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
 return (
-    <Tab.Navigator>
-      <Tab.Screen name="About" 
-      component={AboutScreen} 
-      options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bell" color={color} size={size} />
-          ),
-        }}/>
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
-        }}
-      />
-     <Tab.Screen
-        name="Contact"
-        component={ContactScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+  <Tab.Navigator>
+  <Tab.Screen name="About" 
+  component={HomeScreen} 
+  options={{
+     headerShown: false,
+      tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="format-align-left" color={color} size={size} />
+        //drag
+      ),
+    }}/>
+  <Tab.Screen
+    name="Home"
+    component={HomeScreen}
+    options={{
+     headerShown: false,
+      tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="home" color={color} size={size} />
+      ),
+    }}
+  />
+  <Tab.Screen
+    name="Back"
+    component={ContactScreen}
+    options={{
+     headerShown: false,
+      tabBarIcon: ({ color, size }) => (
+        <MaterialCommunityIcons name="arrow-u-left-bottom" color={color} size={size} />
+      ),
+    }}
+  />
+  </Tab.Navigator> 
   );
 };
 

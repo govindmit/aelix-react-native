@@ -11,37 +11,37 @@ export default [
     // },      
     {
         name:'Dashboard', //Profile
-        iconType:'Feather',
-        iconName:'settings'
+        iconType:'Material',
+        iconName:'view-dashboard'
     },
     {
         name:' My Profile', //Settings
-        iconType:'Material',
-        // iconName:'face-profile'
+        iconType:'FontAwesome',
+         iconName:'address-card'
     },
     {
         name:'Students', //Saved Items
-        iconType:'Material',
-        iconName:'bookmark-check-outline'
+        iconType:'FontAwesome5',
+        iconName:'graduation-cap'
     },
     {
         name:'Counsellor', //Refer a Friend!
         iconType:'FontAwesome5',
-        iconName:'user-friends'
+        iconName:'chalkboard-teacher'
     },
     {
         name:'Pin',
-        iconType:'Feather',
-        iconName:'settings'
+        iconType:'Material',
+        iconName:'dots-horizontal-circle'
     },
     {
         name:'Change Password',
         iconType:'Material',
-        iconName:'bookmark-check-outline'
+        iconName:'lock'
     },
     {
         name:'Chat',
-        iconType:'FontAwesome5',
-        iconName:'user-friends'
+        iconType:'Material',
+        iconName:'message-image-outline'
     }
  ]

@@ -14,52 +14,21 @@ import DrawerItems from "../constants/DrawerItems";
 import Header from "../component/Header";
 import MyProfileScreen from "./MyProfileScreen";
 import PinScreen from "./PinScreen";
+import ContactScreen from './ContactScreen';
+//import HomeScreen from './HomeScreen';
+import AboutScreen from './AboutScreen';
 import StudentsScreen from "./StudentsScreen";
 import { Container, Content, Icon, Body, Form } from 'native-base'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AppNavigator from "../navigation/AppNavigator";
 
 const Drawer = createDrawerNavigator();
-const Tab = createBottomTabNavigator();
-
-function Tabs() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="About" 
-      component={AboutScreen} 
-      options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bell" color={color} size={size} />
-          ),
-        }}/>
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
-        }}
-      />
-     <Tab.Screen
-        name="Contact"
-        component={ContactScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  );
-}
 
 export default function HomeScreen() {
   return (
     <>
     <Drawer.Navigator
        drawerType="front"
-       initialRouteName="Profile"
+       initialRouteName="Dashboard"
 
       //  drawerContent={() => (
         // <Text>heffk</Text>
@@ -80,6 +49,7 @@ export default function HomeScreen() {
          <Drawer.Screen
            key={drawer.name}
            name={drawer.name}
+           /* <AppNavigator/> */
            options={{
             
            drawerIcon:({focused})=>
@@ -135,14 +105,6 @@ export default function HomeScreen() {
          />)
        }
         </Drawer.Navigator>  
-
-       {/* <AppNavigator/> */}
-        {/* <Tab.Navigator initialRouteName="Home">
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="About" component={AboutScreen} />
-          <Tab.Screen name="Contact" component={ContactScreen} />
-        </Tab.Navigator> */}
-
   </>
   );
 }
