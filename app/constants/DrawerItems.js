@@ -43,5 +43,10 @@ export default [
         name:'Chat',
         iconType:'Material',
         iconName:'message-image-outline'
+    },
+    {
+        name:'Logout',
+        iconType:'Material',
+        iconName:'logout'
     }
  ]

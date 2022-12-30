@@ -11,7 +11,8 @@ export default {
     blue : '#005CB3',
     gray:'#BCBCBC',
     musterdyellor:'#FFCD2E',
-    moreWhite:'£FFFFFF'
+    moreWhite:'£FFFFFF',
+    lightgray:'#E5E9F2'
  
     
 }

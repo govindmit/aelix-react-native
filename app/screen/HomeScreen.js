@@ -15,7 +15,7 @@ import Header from "../component/Header";
 import MyProfileScreen from "./MyProfileScreen";
 import PinScreen from "./PinScreen";
 import ContactScreen from './ContactScreen';
-//import HomeScreen from './HomeScreen';
+//import { ListItem, ListItemSeperator } from "../component/list";
 import AboutScreen from './AboutScreen';
 import StudentsScreen from "./StudentsScreen";
 import { Container, Content, Icon, Body, Form } from 'native-base'
@@ -23,22 +23,22 @@ import AppNavigator from "../navigation/AppNavigator";
 
 const Drawer = createDrawerNavigator();
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
+
+  const { user, logOut } = useAuth();
   return (
     <>
     <Drawer.Navigator
        drawerType="front"
        initialRouteName="Dashboard"
-
+     
       //  drawerContent={() => (
-        // <Text>heffk</Text>
-          //  <View>
-            //  <Image
-            //  style={{width: "50%"}}
-            //  resizeMode="contain"
-            //  source={ require('../assets/alex-logo.png')} />
-          //  </View>
-        //  )}
+      //   <ListItem
+      //   title="Log Out"
+      //   onPress={() => logOut()}
+      //   IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+      // />
+      //    )}
        drawerContentOptions={{
          activeTintColor: '#e91e63',
          itemStyle: { marginVertical: 10 },
@@ -102,6 +102,7 @@ export default function HomeScreen() {
                  : drawer.name==='Chat' ? ChatScreen
                    : PinScreen
            }
+           
          />)
        }
         </Drawer.Navigator>  

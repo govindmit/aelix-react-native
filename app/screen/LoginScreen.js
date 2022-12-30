@@ -11,6 +11,7 @@ import {
 } from "../component/forms";
 import authApi from "../api/auth";
 import useAuth from "../auth/useAuth";
+import useApi from "../hooks/useApi";
 import colors from '../config/colors';
 import CheckBox from 'expo-checkbox';
 import TextBox from 'react-native-password-eye'; 
@@ -18,6 +19,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavigationActions } from "react-native-navigation";
 import AppButton from '../component/AppButton';
 import AuthNavigator from "../navigation/AuthNavigator";
+import ActivityIndicator from "../component/ActivityIndicator";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required().label("UserName"),
@@ -25,6 +27,7 @@ const validationSchema = Yup.object().shape({
 });
 
 function LoginScreen({icon, navigation}) {
+  const loginApi = useApi(authApi.login);
   const auth = useAuth();
   const [loginFailed, setLoginFailed] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -57,6 +60,8 @@ timer=()=> {
 // }, 5000 );
 
   return (
+    <>
+    <ActivityIndicator visible={loginApi.loading} />
     <Screens style={styles.container}>
       <Image style={styles.logo} source={require("../assets/alex-logo.png")} />
 
@@ -130,6 +135,7 @@ timer=()=> {
       /> 
      
     </Screens>
+    </>
   );
 }
 

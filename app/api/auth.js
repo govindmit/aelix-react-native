@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import client from "./client";
-//import axios from 'axios';
 
-//const loginApp = () => {
-//const [data, setData] = useState([]);
 
 const login = (username, password) => 
 client.post("/login", {username, password }

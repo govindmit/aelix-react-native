@@ -4,5 +4,6 @@ export default Object.freeze({
   LOGIN: "Login",
   WELCOME: "welcome",
   HOME: "home",
+  DASHBOARD:"  Dashboard",
  
 });

@@ -10,9 +10,10 @@ export default function Header({screen}){
 {/* <Text>hello</Text> */}
 <TouchableOpacity onPress={()=>navigation.toggleDrawer()}>
 <Entypo name="menu" size={24} color="black" />
-</TouchableOpacity>
+</TouchableOpacity> 
 <View>
 <Text>{screen}</Text>
+{/* <Text>hjhh</Text> */}
 </View>
 </View>
   )
