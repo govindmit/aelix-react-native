@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Image, Text, Icon ,View, Button, Alert} from "react-native";
+import { StyleSheet, Image, Text, Icon ,View, Button, Alert,SafeAreaView,StatusBar} from "react-native";
 import Screens from "../component/Screens";
 import * as Yup from "yup";
 import axios from 'axios'
@@ -20,6 +20,8 @@ import { NavigationActions } from "react-native-navigation";
 import AppButton from '../component/AppButton';
 import AuthNavigator from "../navigation/AuthNavigator";
 import ActivityIndicator from "../component/ActivityIndicator";
+import AppTextInput from "../component/AppTextInput";
+
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required().label("UserName"),
@@ -30,7 +32,6 @@ function LoginScreen({icon, navigation}) {
   const loginApi = useApi(authApi.login);
   const auth = useAuth();
   const [loginFailed, setLoginFailed] = useState(false);
-  const [checked, setChecked] = useState(false);
   const [isSelected, setSelection] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -44,9 +45,7 @@ function LoginScreen({icon, navigation}) {
     console.log(user);
 };
 
-openAlert=()=>{
-  alert('Alert with one button');
-}
+
 timer=()=> {
   setTimeout(() => {
     navigation.navigate('Welcome');
@@ -61,9 +60,10 @@ timer=()=> {
 
   return (
     <>
+     <SafeAreaView style={styles.containe}>
     <ActivityIndicator visible={loginApi.loading} />
     <Screens style={styles.container}>
-      <Image style={styles.logo} source={require("../assets/alex-logo.png")} />
+      <Image style={styles.logo} source={require("../assets/login.png")} />
 
       <AppForm // for input validation
         initialValues={{ username: "", password: "" }}
@@ -71,7 +71,10 @@ timer=()=> {
         style={styles.form}
         validationSchema={validationSchema}
       >
-        <ErrorMessage error="Invalid UserName or Password" visible={loginFailed} />
+      <ErrorMessage error="Invalid UserName or Password" visible={loginFailed} />
+ 
+      {/* <AppTextInput/> */}
+        <Text style={styles.contain}>Manager or Counsellor Login</Text> 
         <AppFormField
           autoCapitalize="none"
           autoCorrect={false}
@@ -83,7 +86,7 @@ timer=()=> {
           placeholder="UserName"
           textContentType="username"
         />
-        {/* <TextBox onChangeText={(text) => console.log('onChangeText: ', text)} /> */}
+      
         <AppFormField
           autoCapitalize="none"
           autoCorrect={false}
@@ -108,41 +111,52 @@ timer=()=> {
            value={password}
           />
     */}
-       <View style={{ marginTop:20,marginBottom:20}} >
-       <Text style={styles.text}>
+
+    <View style={styles.checkboxContainer}>
         <CheckBox
-          title='Click Here'
           value={isSelected}
           onValueChange={setSelection}
-          //style={styles.checkbox}
+          style={styles.checkbox}
          />
-        Remember Me
-        </Text>
+          <Text style={styles.text}>Remember Me</Text>
         </View>
        
         {/* <SubmitButton
           title="Login"
           onPress={() => timer()}
         /> */}
-       {/* <AppButton title="Login"
+       <AppButton title="Login"
        onPress={() => timer()}>
-       </AppButton>  */}
+       </AppButton> 
       </AppForm>
       
-         <Button
+         {/* <Button
         title="Loginss"
         onPress={() => navigation.navigate("Tab")}
-      /> 
+      />  */}
      
     </Screens>
+    </SafeAreaView> 
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  containe: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+  },
   container: {
-    padding: 25,
+    padding: 20,
     backgroundColor:'#FFFFFF'
+  },
+  checkbox: {
+    alignSelf: "center",
+  },
+  checkboxContainer :{
+    marginTop:10, 
+    marginBottom:20,
+    flexDirection: "row",
   },
   pass : {
     paddingTop : 20,
@@ -163,29 +177,26 @@ const styles = StyleSheet.create({
       marginVertical : 10,
     },
   logo: {
-    width: 300,
-    height: 100,
+    width: 370,
+    height: 300,
     alignSelf: "center",
-     marginTop: 50,
     marginBottom: 20,
   },
-  icon :{
-    textAlign: 'right',
-  },
+ 
   text : {
    fontSize: 16,
-    // paddingRight : 50,
-    color : colors.dark,
-    // paddingTop : 20,
-    left: 20,
-    // padding: 10
+   color : colors.darkgray,
+   margin: 8,
+    //left: 20,
+    },
+  contain : {
+   textAlign: 'left',
+    // padding: 10,
+    margin: 18,
+    fontSize: 22,
+    lineHeight: 33,
+    fontWeight: 'bold',
+    color : colors.blue,
    },
-  forgot : {
-   textAlign: 'right',
-    padding: 20,
-    fontSize: 16,
-    color : colors.blue
-},
- 
-});
+ });
 export default LoginScreen;

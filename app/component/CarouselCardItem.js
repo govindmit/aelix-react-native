@@ -1,9 +1,6 @@
 import React from 'react'
-import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import colors from '../config/colors';
-
-export const SLIDER_WIDTH = Dimensions.get('window').width + 80
-export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
 
 const CarouselCardItem = ({ item, index }) => {
   return (
@@ -12,8 +9,8 @@ const CarouselCardItem = ({ item, index }) => {
         source={{ uri: item.imgUrl }}
         style={styles.image}
       /> */}
-      <Text style={styles.header}>{item.title}</Text>
-      <Text style={styles.number}>{item.number}</Text>
+      <Text style={styles.header}>ffg</Text>
+      <Text style={styles.number}>fgfg</Text>
     </View>
   )
 }

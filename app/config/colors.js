@@ -12,7 +12,9 @@ export default {
     gray:'#BCBCBC',
     musterdyellor:'#FFCD2E',
     moreWhite:'£FFFFFF',
-    lightgray:'#E5E9F2'
+    lightgray:'#E5E9F2',
+    darkgray:'#818181',
+    grayshade: '#F5F5F5'
  
     
 }

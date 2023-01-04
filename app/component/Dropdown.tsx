@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import { Icon } from 'react-native-elements';
+import colors from '../config/colors';
 
 interface Props {
   label: string;
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#efefef',
     height: 30,
     zIndex: 1,
-    width: '40%',
+    width: '35%',
    //textAlign: 'right',
   },
   buttonText: {
@@ -98,25 +99,23 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     position: 'absolute',
-    backgroundColor: '#efefef',
-   // width: '30%',
+    //backgroundColor: '#efefef',
+    backgroundColor: colors.gray,
+    width: '30%',
     shadowColor: '#000000',
-    textAlign: 'right',
-    alignItems: "flex-end",
-   // height: '50',
-   // shadowRadius: 4,
-   // shadowOffset: { height: 4, width: 0 },
-    //shadowOpacity: 0.5,
+    // height: '50',
+  //  shadowRadius: 4,
+  //  shadowOffset: { height: 4, width: 0 },
+  //   shadowOpacity: 0.5,
   },
   // overlay: {
   //   width: '100%',
   //   height: '100%',
   // },
   item: {
-    //alignItems: "flex-end",
-     paddingLeft: 330,
-    // paddingHorizontal: 100,
-    paddingVertical: 10,
+    alignItems: "center",
+    paddingLeft: 40,
+    paddingVertical: 8,
     borderBottomWidth: 1,
   },
 });

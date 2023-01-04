@@ -28,10 +28,10 @@ export default function HomeScreen({navigation}) {
   const { user, logOut } = useAuth();
   return (
     <>
-    <Drawer.Navigator
+      <Drawer.Navigator
        drawerType="front"
        initialRouteName="Dashboard"
-     
+       options={{ headerShown: false }}
       //  drawerContent={() => (
       //   <ListItem
       //   title="Log Out"
@@ -49,34 +49,27 @@ export default function HomeScreen({navigation}) {
          <Drawer.Screen
            key={drawer.name}
            name={drawer.name}
-           /* <AppNavigator/> */
+         
            options={{
-            
-           drawerIcon:({focused})=>
+            drawerIcon:({focused})=>
             drawer.iconType==='Material' ?
             <MaterialCommunityIcons
                  name={drawer.iconName}
                  size={24}
                  color={focused ? "#e91e63" : "black"}
              />
-               /* <Image
-          style={styles.drawerImage}
-          source={ require('../assets/alex-logo.png')}  /> */
-           :
-           drawer.iconType==='Feather' ?
-        <Feather
+           : drawer.iconType==='Feather' ?
+           <Feather
                name={drawer.iconName}
                size={24}
                color={focused ? "#e91e63" : "black"}
              />
-           :
-          <FontAwesome5
+           : <FontAwesome5
                         name={drawer.iconName}
                         size={24}
                         color={focused ? "#e91e63" : "black"}
-                      />
-                    ,
-                        headerShown:true,
+             /> ,
+              headerShown:true,
               //                header: ({ scene }) => {
               //                  const { options } = scene.descriptor;
               //                  const title =
@@ -97,16 +90,15 @@ export default function HomeScreen({navigation}) {
                 :drawer.name==='MyProfile' ? MyProfileScreen
                  : drawer.name==='Students' ? StudentsScreen
                 : drawer.name==='Counsellor' ? CounsellorScreen
-              //  : drawer.name==='Pin' ? PinScreen
+               //  : drawer.name==='Pin' ? PinScreen
                  : drawer.name==='ChangePass' ? ChangePassScreen
                  : drawer.name==='Chat' ? ChatScreen
                    : PinScreen
            }
-           
-         />)
+           />)
        }
         </Drawer.Navigator>  
-  </>
+     </>
   );
 }
 
