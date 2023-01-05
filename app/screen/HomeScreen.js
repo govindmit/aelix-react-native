@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Image } from 'react-native';
-import { NavigationContainer } from "@react-navigation/native";
+import 'react-native-gesture-handler';
+import { StyleSheet, Text, View,Image,TouchableOpacity } from 'react-native';
+import { NavigationContainer , DrawerActions } from "@react-navigation/native";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import ChatScreen from "./ChatScreen";
 import ChangePassScreen from "./ChangePassScreen";
@@ -11,86 +12,95 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import CounsellorScreen from "./CounsellorScreen";
 import DashboardScreen from "./DashboardScreen";
 import DrawerItems from "../constants/DrawerItems";
-import Header from "../component/Header";
+//import Headers from "../component/Headers";
 import MyProfileScreen from "./MyProfileScreen";
 import PinScreen from "./PinScreen";
-import ContactScreen from './ContactScreen';
+import { Header } from 'react-native-elements';
+import CustomSidebarMenu from "../component/CustomSidebarMenu";
 //import { ListItem, ListItemSeperator } from "../component/list";
-import AboutScreen from './AboutScreen';
-import StudentsScreen from "./StudentsScreen";
-import { Container, Content, Icon, Body, Form } from 'native-base'
+import StudentsScreen from "./Student/StudentsScreen";
+import { Container, Content, Icon, Body, Form } from 'native-base';
+//import {DrawerActions} from '@react-navigation/native';
 import AppNavigator from "../navigation/AppNavigator";
 
 const Drawer = createDrawerNavigator();
 
 export default function HomeScreen({navigation}) {
-
-  const { user, logOut } = useAuth();
-  return (
+return (
     <>
       <Drawer.Navigator
        drawerType="front"
        initialRouteName="Dashboard"
-       options={{ headerShown: false }}
-      //  drawerContent={() => (
-      //   <ListItem
-      //   title="Log Out"
-      //   onPress={() => logOut()}
-      //   IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
-      // />
-      //    )}
-       drawerContentOptions={{
-         activeTintColor: '#e91e63',
-         itemStyle: { marginVertical: 10 },
-       
-          }}>
-       {
+    
+      //  drawerContentOptions={{
+      //    activeTintColor: '#e91e63',
+      //    itemStyle: { marginVertical: 4 },
+      //    }}
+         
+          screenOptions={{
+           activeTintColor: '#e91e63',
+          itemStyle: {marginVertical: 20},
+          //drawerPosition: 'left',
+         }}
+        drawerContent={props => <CustomSidebarMenu {...props} />}>
+        
+          {
          DrawerItems.map(drawer =>
          <Drawer.Screen
            key={drawer.name}
            name={drawer.name}
-         
            options={{
+        //  headerTintColor: 'black',
+         //headerLeft:true,
+       headerRight: () => ( 
+        <>
+      <View style={{flexDirection : "row" ,height: 50}}>
+       <Image source={require("../assets/redalert.png")}
+       style={{ marginRight: 10,}}
+       />
+         <Image source={require("../assets/yellowalert.png")}
+       style={{ marginRight: 10,}}
+       />
+         <Image source={require("../assets/blackalert.png")}
+       style={{ marginRight: 40,}}
+       /> 
+        <Image source={require("../assets/Avatar.png")}
+       style={{ marginRight: 10,}}
+       />
+      </View>  
+      <TouchableOpacity>
+
+     
+       {/* <MaterialCommunityIcons name="menu" size={30} color="black" /> */}
+       </TouchableOpacity>
+       </>
+      ),
+            //headerShown:true,
             drawerIcon:({focused})=>
             drawer.iconType==='Material' ?
             <MaterialCommunityIcons
                  name={drawer.iconName}
                  size={24}
-                 color={focused ? "#e91e63" : "black"}
+                 color={focused ? "#005CB3" : "black"}
              />
            : drawer.iconType==='Feather' ?
            <Feather
                name={drawer.iconName}
                size={24}
-               color={focused ? "#e91e63" : "black"}
+               color={focused ? "#005CB3" : "black"}
              />
            : <FontAwesome5
                         name={drawer.iconName}
                         size={24}
-                        color={focused ? "#e91e63" : "black"}
+                        color={focused ? "#005CB3" : "black"}
              /> ,
-              headerShown:true,
-              //                header: ({ scene }) => {
-              //                  const { options } = scene.descriptor;
-              //                  const title =
-              //                    options.headerTitle !== undefined
-              //                      ? options.headerTitle
-              //                      : options.title !== undefined
-              //                      ? options.title
-              //                      : scene.route.name;
-
-                               //return (
-             // <Header screen={title}/>
-                               //);
-                             //}
-
-           }}
+            }}
            component={
              drawer.name==='Dashboard' ? DashboardScreen
                 :drawer.name==='MyProfile' ? MyProfileScreen
                  : drawer.name==='Students' ? StudentsScreen
                 : drawer.name==='Counsellor' ? CounsellorScreen
-               //  : drawer.name==='Pin' ? PinScreen
+                : drawer.name==='Pin' ? PinScreen
                  : drawer.name==='ChangePass' ? ChangePassScreen
                  : drawer.name==='Chat' ? ChatScreen
                    : PinScreen
@@ -98,17 +108,15 @@ export default function HomeScreen({navigation}) {
            />)
        }
         </Drawer.Navigator>  
+
+
+
+        
      </>
   );
 }
 
-const styles = StyleSheet.create({
-  drawerImage: {
-    height: 50,
-    width: 150,
-    borderRadius: 75
-  }
-});
+
 
 
 

@@ -1,15 +1,5 @@
 export default [
-    // <Image
-    //       style={styles.drawerImage}
-    //       source={{ uri:('https://reactnative.dev/img/tiny_logo.png')}} />
-    // {
-    //     image:<Image
-    //     style={styles.drawerImage}
-    //     source={{ uri:('https://reactnative.dev/img/tiny_logo.png')}} />
-    //     iconType:'Feather',
-    //     iconName:'settings'
-    // },      
-    {
+        {
         name:'Dashboard', //Profile
         iconType:'Material',
         iconName:'view-dashboard'
@@ -44,9 +34,9 @@ export default [
         iconType:'Material',
         iconName:'message-image-outline'
     },
-    {
-        name:'Logout',
-        iconType:'Material',
-        iconName:'logout'
-    }
+    // {
+    //     name:'Logout',
+    //     iconType:'Material',
+    //     iconName:'logout'
+    // }
  ]

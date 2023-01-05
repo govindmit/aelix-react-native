@@ -12,44 +12,7 @@ import { navigationRef } from "./app/navigation/rootNavigation";
 //import logger from "./app/utility/logger";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ContactScreen from './app/screen/ContactScreen';
 import HomeScreen from './app/screen/HomeScreen';
-import AboutScreen from './app/screen/AboutScreen';
-
-const Tab = createBottomTabNavigator();
-
-function Tabs() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="About" 
-      component={AboutScreen} 
-      options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bell" color={color} size={size} />
-          ),
-        }}/>
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
-        }}
-      />
-     <Tab.Screen
-        name="Contact"
-        component={ContactScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  );
-}
 
 //logger.start();
 export default function App() {

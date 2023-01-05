@@ -87,36 +87,29 @@ const styles = StyleSheet.create({
     height: 30,
     zIndex: 1,
     width: '35%',
-   //textAlign: 'right',
+    
   },
   buttonText: {
     flex: 1,
     textAlign: 'right',
     marginRight: 20,
+    
   },
   icon: {
     marginRight: 10,
+  
   },
   dropdown: {
     position: 'absolute',
-    //backgroundColor: '#efefef',
-    backgroundColor: colors.gray,
+    backgroundColor: '#efefef',
     width: '30%',
-    shadowColor: '#000000',
-    // height: '50',
-  //  shadowRadius: 4,
-  //  shadowOffset: { height: 4, width: 0 },
-  //   shadowOpacity: 0.5,
-  },
-  // overlay: {
-  //   width: '100%',
-  //   height: '100%',
-  // },
+    Top: 50,
+   },
   item: {
     alignItems: "center",
     paddingLeft: 40,
-    paddingVertical: 8,
-    borderBottomWidth: 1,
+    paddingVertical: 6,
+   // borderBottomWidth: 1,
   },
 });
 

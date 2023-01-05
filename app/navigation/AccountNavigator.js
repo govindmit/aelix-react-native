@@ -1,6 +1,5 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-//import AccountScreen from "../screen/AccountScreen";
 //import MessagesScreens from "../screen/MessagesScreens";
 // import { header } from "express-validator";
 

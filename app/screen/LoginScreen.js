@@ -1,5 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Image, Text, Icon ,View, Button, Alert,SafeAreaView,StatusBar} from "react-native";
+import { StyleSheet,
+   Image,
+    Text, 
+    Icon ,
+    View,
+    Button,
+    Alert,
+    SafeAreaView,
+    StatusBar,
+    KeyboardAvoidingView,
+    TouchableWithoutFeedback,
+    Keyboard,
+    } from "react-native";
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Screens from "../component/Screens";
 import * as Yup from "yup";
 import axios from 'axios'
@@ -59,9 +72,10 @@ timer=()=> {
 // }, 5000 );
 
   return (
-    <>
-     <SafeAreaView style={styles.containe}>
-    <ActivityIndicator visible={loginApi.loading} />
+    
+     <KeyboardAwareScrollView>
+     {/* <SafeAreaView style={styles.containe}> */}
+    {/* <ActivityIndicator visible={loginApi.loading} /> */}
     <Screens style={styles.container}>
       <Image style={styles.logo} source={require("../assets/login.png")} />
 
@@ -125,19 +139,21 @@ timer=()=> {
           title="Login"
           onPress={() => timer()}
         /> */}
-       <AppButton title="Login"
+       {/* <AppButton title="Login"
        onPress={() => timer()}>
-       </AppButton> 
+       </AppButton>  */}
       </AppForm>
       
-         {/* <Button
+         <Button
         title="Loginss"
         onPress={() => navigation.navigate("Tab")}
-      />  */}
+      /> 
      
     </Screens>
-    </SafeAreaView> 
-    </>
+    {/* </SafeAreaView>  */}
+    </KeyboardAwareScrollView>
+   
+    
   );
 }
 

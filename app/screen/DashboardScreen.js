@@ -6,12 +6,11 @@ import ActivityIndicator from "../component/ActivityIndicator";
 import colors from "../config/colors";
 import Screens from "../component/Screens";
 import routes from "../navigation/routes";
-import CarouselCards from './CarouselCards'
-import Cards from './Cards'
+import CarouselCards from './CarouselCards';
+import Cards from './Cards';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Dropdown from '../component/Dropdown';
 import { Avatar, Button, Card } from 'react-native-paper';
-
 //import data from '../../data';
 //import { Card } from '@rneui/themed';
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
@@ -28,7 +27,7 @@ export default function DashboardScreen() {
         { label: 'Three', value: '3' },
         { label: 'Four', value: '4' },
         { label: 'Five', value: '5' },
-      ];
+         ];
 
    return (
     <>  
@@ -36,8 +35,8 @@ export default function DashboardScreen() {
      <SafeAreaView style={styles.containe}>
      {/* <ScrollView style={styles.scrollView}> */}
      
-      <Dropdown label="FILTER BY:" 
-       data={item} onSelect={setSelected} />
+      <Dropdown label="FILTER BY: " 
+       data={item} onSelect={setSelected} style={{ paddingTop:20}}/>
   
        <View style={styles.container}>
    
@@ -75,14 +74,15 @@ export default function DashboardScreen() {
      <View>
         <Card style={styles.cardb}>
         <Card.Content>
-          <Text variant="titleLarge">Absent</Text>
+          <Text variant="titleLarge" style={styles.contain}>Absent</Text>
           </Card.Content>
-        <Card.Title title="Manika Jhon" subtitle="Class A" left={LeftContent} style={{ borderBottom: 1}}/>
+        <Card.Title title="Manika Jhon" subtitle="Class A" left={LeftContent} 
+        style={styles.divider }/>
         {/* <Card.Content>
           <Text variant="titleLarge">Card title</Text>
           </Card.Content> */}
-        <Card.Title title="Mike" subtitle="Class A" left={LeftContent} />
-        <Card.Title title="Sam" subtitle="Class A" left={LeftContent} />
+        <Card.Title title="Mike" subtitle="Class A" left={LeftContent}   style={styles.divider }/>
+        <Card.Title title="Sam" subtitle="Class A" left={LeftContent}   style={styles.divider }/>
         {/* <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} /> */}
         
       </Card>
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 20,
 
-  },
+   },
   headers: {
     color: colors.black,
     fontSize: 18,
@@ -137,13 +137,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 12,
 
-  },
+   },
   number: {
     color:  colors.blue,
     fontSize: 30,
     fontWeight: 'bold',
     margin: 10,
     textAlign:"center"
+   },
+   divider :{
+    borderBottomWidth :1,
+     borderBottomColor: colors.gray,
+    //marginLeft: 5,
    },
 containers: {
   //flex: 1,
@@ -164,16 +169,23 @@ containers: {
     backgroundColor: 'pink',
     marginHorizontal: 20,
   },
-  dropdown:{
-    flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'column',
-    }, 
+  // dropdown:{
+  //   flex: 1,
+  //     backgroundColor: '#fff',
+  //     alignItems: 'center',
+  //     justifyContent: 'center',
+  //     flexDirection: 'column',
+  //   }, 
     cardb :{
       borderRadius:0
-    }
+    },
+    contain : {
+      textAlign: 'left',
+       margin: 3,
+       fontSize: 20,
+       fontWeight: 'bold',
+       color : colors.blue,
+      },
   // class :{
   //   fontWeight:'200',
   //    left:20,

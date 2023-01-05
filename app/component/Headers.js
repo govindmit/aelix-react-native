@@ -3,12 +3,17 @@ import {View,Text, StyleSheet, TouchableOpacity,} from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-export default function Header({screen}){
+export default function Headers({screen}){
  const navigation = useNavigation();
   return(
 <View style={headerStyles.container}>
 {/* <Text>hello</Text> */}
 <TouchableOpacity onPress={()=>navigation.toggleDrawer()}>
+<Header
+  leftComponent={{ icon: 'menu', color: '#fff' }}
+  centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
+  rightComponent={{ icon: 'home', color: '#fff' }}
+/>
 <Entypo name="menu" size={24} color="black" />
 </TouchableOpacity> 
 <View>

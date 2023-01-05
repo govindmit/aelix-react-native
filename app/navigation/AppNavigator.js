@@ -6,9 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import routes from "./routes";
 import navigation from "./rootNavigation";
 import ChatScreen from "../screen/ChatScreen";
-//import ContactScreen from '../screen/ContactScreen';
 import HomeScreen from '../screen/HomeScreen';
-import AboutScreen from '../screen/AboutScreen';
 import PinScreen from '../screen/PinScreen';
 import PasswordScreen from '../screen/PasswordScreen';
 import MyProfileScreen from '../screen/MyProfileScreen';
@@ -17,8 +15,13 @@ const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
 return (
-  <Tab.Navigator>
-  <Tab.Screen name="Chat" 
+  <Tab.Navigator
+    initialRouteName="Home"
+      screenOptions={{
+        tabBarActiveTintColor: '#005CB3',
+      }} >
+  <Tab.Screen
+   name="Chat" 
   component={ChatScreen} 
   options={{
      headerShown: false,
@@ -39,7 +42,7 @@ return (
   />
   <Tab.Screen
     name="Home"
-    component={HomeScreen}
+   component={HomeScreen}
     options={{
      headerShown: false,
       tabBarIcon: ({ color, size }) => (
