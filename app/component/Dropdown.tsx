@@ -12,11 +12,11 @@ import colors from '../config/colors';
 
 interface Props {
   label: string;
-  data: Array<{ label: string; value: string }>;
-  onSelect: (item: { label: string; value: string }) => void;
+  data: Array<{ className: string; value: string }>;
+  onSelect: (item: { className: string; value: string }) => void;
 }
 
-const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
+const Dropdown: FC<Props> = ({ className, data, onSelect }) => {
   const DropdownButton = useRef();
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(undefined);
@@ -41,7 +41,7 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
 
   const renderItem = ({ item }: any): ReactElement<any, any> => (
     <TouchableOpacity style={styles.item} onPress={() => onItemPress(item)}>
-      <Text>{item.label}</Text>
+      <Text>{item.className}</Text>
     </TouchableOpacity>
   );
 
@@ -72,9 +72,9 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
     >
       {renderDropdown()}
       <Text style={styles.buttonText}>
-        {(!!selected && selected.label) || label}
+        {(!!selected && selected.className) || className}
       </Text>
-      <Icon style={styles.icon} type="font-awesome" name="chevron-down" />
+      <Icon style={styles.icon} type="font-awesome" name="angle-down" />
     </TouchableOpacity>
   );
 };
@@ -84,32 +84,37 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#efefef',
-    height: 30,
+    height: 20,
     zIndex: 1,
-    width: '35%',
+    width: '32%',
     
-  },
+ },
   buttonText: {
     flex: 1,
-    textAlign: 'right',
-    marginRight: 20,
-    
-  },
-  icon: {
+     textAlign: 'right',
     marginRight: 10,
-  
-  },
+    marginTop: 5
+   },
+  icon: {
+    marginRight: 30,
+   },
   dropdown: {
     position: 'absolute',
     backgroundColor: '#efefef',
-    width: '30%',
-    Top: 50,
+    width: '35%',
+    Top: 20,
+    margin: 16,
+    height: 200,
+    // width: 130,
+    // backgroundColor: '#EEEEEE',
+    //borderRadius: 22,
+    //paddingHorizontal: 8,
    },
   item: {
     alignItems: "center",
     paddingLeft: 40,
     paddingVertical: 6,
-   // borderBottomWidth: 1,
+    //borderBottomWidth: 1,
   },
 });
 

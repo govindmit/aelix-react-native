@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from "react-native";
-import Carousel, { Pagination } from 'react-native-snap-carousel';
+// import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from '../component/CarouselCardItem';
 import data from '../../data';
 import colors from '../config/colors';

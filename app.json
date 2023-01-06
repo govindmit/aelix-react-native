@@ -27,7 +27,8 @@
       "bundleIdentifier": "com.govind.mit.AelixNative",
       "buildNumber": "1.0.0"
     },
-    "android": {
+
+  "android": {
        "package": "com.govind.mit.AelixNative",
        "versionCode": 1
     },

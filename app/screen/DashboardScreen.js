@@ -9,35 +9,71 @@ import routes from "../navigation/routes";
 import CarouselCards from './CarouselCards';
 import Cards from './Cards';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+//import SelectCountry from '../component/SelectCountry';
 import Dropdown from '../component/Dropdown';
 import { Avatar, Button, Card } from 'react-native-paper';
+import axios from 'axios';
+//import { SelectCountry } from 'react-native-element-dropdown';
 //import data from '../../data';
 //import { Card } from '@rneui/themed';
+
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
-export default function DashboardScreen() {
-
-  const [data, setData] = useState([]);
+export default function DashboardScreen({ className }) {
+  const [data, setData] = useState();
   const [selected, setSelected] = useState("");
+  const [country, setCountry] = useState('1');
 
-    const item = [
-        { label: 'All', value: '1' },
-        { label: 'One', value: '1' },
-        { label: 'Two', value: '2' },
-        { label: 'Three', value: '3' },
-        { label: 'Four', value: '4' },
-        { label: 'Five', value: '5' },
-         ];
+  useEffect(() => {
+         
+          axios.get('https://api-aelix.mangoitsol.com/api/getClass')
+              //.then(response => console.log(response.data.data));
+              .then(response => setData(response.data.data));
+          }, []);
+          console.log(">>>>>>>>>>>>>>>>>",data)
 
    return (
     <>  
      <Screens style={styles.screen}>
      <SafeAreaView style={styles.containe}>
      {/* <ScrollView style={styles.scrollView}> */}
-     
-      <Dropdown label="FILTER BY: " 
-       data={item} onSelect={setSelected} style={{ paddingTop:20}}/>
-  
+
+          <View>
+          {/* {  
+             data.map((item) => 
+                    //console.log("????????????????????????", item.className)
+                    <View>
+                     <Text>
+                     <Dropdown label="All " data={data} onSelect={setSelected}/>
+                  </Text>  
+                     </View>
+                   )} */}
+          </View>
+        
+
+      <Text>FILTER BY: 
+      <Dropdown 
+       data={data} onSelect={setSelected}/>
+      </Text>    
+
+      {/* <SelectCountry
+         style={styles.dropdown}
+         selectedTextStyle={styles.selectedTextStyle}
+         placeholderStyle={styles.placeholderStyle}
+       
+         iconStyle={styles.iconStyle}
+         maxHeight={200}
+         value={country}
+         data={local_data}
+         valueField="value"
+         labelField="lable"
+         imageField="image"
+         placeholder="Select country"
+         searchPlaceholder="Search..."
+         onChange={e => {
+           setCountry(e.value);
+         }}
+       /> */}
        <View style={styles.container}>
    
          <Card style={styles.card }>
@@ -49,9 +85,7 @@ export default function DashboardScreen() {
           <Text style={styles.headers}>Present Students</Text>
           <Text style={styles.number}>140</Text>
         </Card>
-        
-        
-     </View>
+       </View>
 
      <View style={styles.container}>
    
@@ -67,11 +101,7 @@ export default function DashboardScreen() {
   
       </View>
 
-      {/* <SafeAreaView style={styles.contain}> 
-      <Cards />
-      </SafeAreaView> */}
-    
-     <View>
+   <View>
         <Card style={styles.cardb}>
         <Card.Content>
           <Text variant="titleLarge" style={styles.contain}>Absent</Text>
@@ -186,6 +216,7 @@ containers: {
        fontWeight: 'bold',
        color : colors.blue,
       },
+    
   // class :{
   //   fontWeight:'200',
   //    left:20,

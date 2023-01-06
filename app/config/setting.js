@@ -2,7 +2,7 @@ import Constants from "expo-constants";
 
 const settings = {
   dev: {
-    apiUrl: "http://103.127.29.85:4001/api",
+    apiUrl: "https://api-aelix.mangoitsol.com/api",
   },
   // staging: {
   //   apiUrl: "https://demoreactnativeapp.herokuapp.com/api",
