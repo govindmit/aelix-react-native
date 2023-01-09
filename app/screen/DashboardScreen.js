@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, FlatList, ScrollView, Image , SafeAreaView ,StatusBar} from "react-native";
+import { View,
+    StyleSheet,
+    FlatList, 
+    ScrollView,
+    Image ,
+    SafeAreaView ,
+    StatusBar,
+    TouchableOpacity
+    } from "react-native";
 import { Text, Icon } from '@rneui/themed';
 import ActivityIndicator from "../component/ActivityIndicator";
 //import Card from "../component/Card";
@@ -9,12 +17,10 @@ import routes from "../navigation/routes";
 import CarouselCards from './CarouselCards';
 import Cards from './Cards';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-//import SelectCountry from '../component/SelectCountry';
 import Dropdown from '../component/Dropdown';
-import { Avatar, Button, Card } from 'react-native-paper';
+import { Avatar, Button, Card} from 'react-native-paper';
 import axios from 'axios';
-//import { SelectCountry } from 'react-native-element-dropdown';
-//import data from '../../data';
+import {  CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
 //import { Card } from '@rneui/themed';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
@@ -23,22 +29,52 @@ export default function DashboardScreen({ className }) {
   const [data, setData] = useState();
   const [selected, setSelected] = useState("");
   const [country, setCountry] = useState('1');
+  const [count, setCount] = useState(0);
 
-  useEffect(() => {
+  const onPress = () => setCount(prevCount => prevCount + 1);
+
+  // useEffect(() => {
          
-          axios.get('https://api-aelix.mangoitsol.com/api/getClass')
-              //.then(response => console.log(response.data.data));
-              .then(response => setData(response.data.data));
+  //         axios.get('https://api-aelix.mangoitsol.com/api/getClass')
+  //             //.then(response => console.log(response.data.data));
+  //             .then(response => setData(response.data.data));
+  //         }, []);
+  //         console.log(">>>>>>>>>>>>>>>>>",data)
+
+
+
+          useEffect(() => {
+            getClass();
+             getStudent();
           }, []);
-          console.log(">>>>>>>>>>>>>>>>>",data)
+                 
+                 async function getClass() {
+                  await axios.get('https://api-aelix.mangoitsol.com/api/getClass')
+                      //.then((response) => {console.log(response.data.data)});
+                      .then((response) => { setData(response.data.data)});
+                 }
+                  //console.log(">>>>>>>>>>>>>>>>>",data)
+                  
+                 // const AuthStr = 'Bearer ' + USER_TOKEN;
+                  async function getStudent() {
+                    await axios.get('https://api-aelix.mangoitsol.com/api/student',{
+                      // headers: {
+                      //   'Authorization' : `Bearer ${localStorage.setItem('access_token')}`
+                      // }
+                  })
+                         .then((response) => {console.log(response.data)});
+                        //.then((response) => { setData(response.data.data)});
+                   }
+                   console.log(">>>>>>>>>>>>>>>>>",data)
+
+
+          
 
    return (
     <>  
      <Screens style={styles.screen}>
      <SafeAreaView style={styles.containe}>
-     {/* <ScrollView style={styles.scrollView}> */}
-
-          <View>
+        <View>
           {/* {  
              data.map((item) => 
                     //console.log("????????????????????????", item.className)
@@ -52,28 +88,10 @@ export default function DashboardScreen({ className }) {
         
 
       <Text>FILTER BY: 
-      <Dropdown 
+      <Dropdown className="ALL"
        data={data} onSelect={setSelected}/>
       </Text>    
 
-      {/* <SelectCountry
-         style={styles.dropdown}
-         selectedTextStyle={styles.selectedTextStyle}
-         placeholderStyle={styles.placeholderStyle}
-       
-         iconStyle={styles.iconStyle}
-         maxHeight={200}
-         value={country}
-         data={local_data}
-         valueField="value"
-         labelField="lable"
-         imageField="image"
-         placeholder="Select country"
-         searchPlaceholder="Search..."
-         onChange={e => {
-           setCountry(e.value);
-         }}
-       /> */}
        <View style={styles.container}>
    
          <Card style={styles.card }>
@@ -98,30 +116,59 @@ export default function DashboardScreen({ className }) {
           <Text style={styles.headers}>Out of Students</Text>
           <Text style={styles.number}>4</Text>
         </Card>
-  
       </View>
 
-   <View>
+      <View>
         <Card style={styles.cardb}>
-        <Card.Content>
-          <Text variant="titleLarge" style={styles.contain}>Absent</Text>
-          </Card.Content>
+        <Card.Content style ={{ flexDirection : "row"}}>
+          
+          <TouchableOpacity
+        // onPress={onPress}
+            >
+          <Text style={styles.contain}>Absent</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+           onPress={onPress}
+          >
+        <Text style={styles.out}>Out Of Class</Text>
+        </TouchableOpacity>
+       </Card.Content>
+         
         <Card.Title title="Manika Jhon" subtitle="Class A" left={LeftContent} 
         style={styles.divider }/>
-        {/* <Card.Content>
-          <Text variant="titleLarge">Card title</Text>
-          </Card.Content> */}
-        <Card.Title title="Mike" subtitle="Class A" left={LeftContent}   style={styles.divider }/>
-        <Card.Title title="Sam" subtitle="Class A" left={LeftContent}   style={styles.divider }/>
-        {/* <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} /> */}
         
-      </Card>
-        {/* <Card style={styles.containers}>
-        
+        <Card.Title title="Mike" subtitle="Class A" left={LeftContent} style={styles.divider }/>
+        <Card.Title title="Sam" subtitle="Class A" left={LeftContent} style={styles.divider }/>
+        </Card>
+
+        {/* <Card>
+          <CardImage 
+            source={{uri: 'http://placehold.it/480x270'}} 
+            title="Above all i am here"
+          />
+          <CardTitle 
+            title="This is a title" 
+            subtitle="This is subtitle"
+          />
+          <CardContent text="Your device will reboot in few seconds once successful, be patient meanwhile" />
+          <CardAction 
+            separator={true} 
+            inColumn={false}>
+            <CardButton
+              onPress={() => {}}
+              title="Push"
+              color="blue"
+            />
+            <CardButton
+              onPress={() => {}}
+              title="Later"
+              color="blue"
+            />
+          </CardAction>
         </Card> */}
+       
         </View>
-        {/* </ScrollView> */}
-      </SafeAreaView> 
+        </SafeAreaView> 
        </Screens>
         </>
    );
@@ -146,9 +193,9 @@ const styles = StyleSheet.create({
     //padding: 10,
    },
   card: {
-    marginRight:20,
+    marginRight:24,
      height: 130,
-    width: 163,
+     width: 160,
      borderRadius:1,
      top:0
     },
@@ -207,15 +254,28 @@ containers: {
   //     flexDirection: 'column',
   //   }, 
     cardb :{
-      borderRadius:0
+      borderRadius:0,
+      marginRight:10,
     },
     contain : {
+      flexDirection : "row",
       textAlign: 'left',
        margin: 3,
-       fontSize: 20,
+       fontSize: 19,
        fontWeight: 'bold',
        color : colors.blue,
       },
+      out : {
+       // flexDirection : "row",
+       alignItems: "center",
+       backgroundColor: colors.lightgray,
+       padding: 10,
+        textAlign: 'center',
+         marginLeft: 23,
+         fontSize: 16,
+         fontWeight: 'bold',
+         color : colors.darkgray,
+        },
     
   // class :{
   //   fontWeight:'200',
@@ -224,11 +284,5 @@ containers: {
   //   justifyContent: "left",
   //   fontSize: 20,
   //   fontWeight: 'bold',
-    
   // },
-  // heading:{
-  //   padding: 10
-  // },
-
-  
   });
