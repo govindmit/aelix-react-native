@@ -1,10 +1,10 @@
 import * as SecureStore from "expo-secure-store";
 import jwtDecode from "jwt-decode";
-const key = "token";
+const key = "authToken";
 
-const storeToken = async (token) => {
+const storeToken = async (authToken) => {
   try {
-    await SecureStore.setItemAsync(key, token);
+    await SecureStore.setItemAsync(key, authToken);
   } catch (error) {
     console.log("Error Storing the Auth Token", error);
   }

@@ -19,6 +19,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AuthContext from "../auth/context";
 import authStorage from "../auth/storage";
 import useAuth from '../auth/useAuth';
+import AuthNavigator from "../navigation/AuthNavigator";
 
 const CustomSidebarMenu = (props,{ navigation }) => {
   // const { user, logOut } = useAuth();
@@ -46,7 +47,8 @@ const CustomSidebarMenu = (props,{ navigation }) => {
        </DrawerContentScrollView>
       <Text
         style={styles.text}
-        onPress={() => {console.log('clicked'),logOut()}}
+        onPress={() => navigation.navigate("Login")}
+       // onPress={() => {console.log('clicked'),logOut()}}
         IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
     //  {   console.log("hje")}
         > Logout </Text>

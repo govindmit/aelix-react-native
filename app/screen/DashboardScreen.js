@@ -65,7 +65,7 @@ export default function DashboardScreen({ className }) {
                          .then((response) => {console.log(response.data)});
                         //.then((response) => { setData(response.data.data)});
                    }
-                   console.log(">>>>>>>>>>>>>>>>>",data)
+                   //console.log(">>>>>>>>>>>>>>>>>",data)
 
 
           

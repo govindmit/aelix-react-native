@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import client from "./client";
 
-
-const login = (username, password) => 
-client.post("/login", {username, password }
-  )
+const login = (username, password) => client.post("/login", {username, password });
   // const {user, token} = response.data
-  .then(response => console.log(response.data));  
+  //.then(response => console.log(response.data));  
 
 export default {
   login,

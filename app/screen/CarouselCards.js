@@ -18,8 +18,8 @@ const CarouselCards = () => {
         ref={isCarousel}
         data={data}
         renderItem={CarouselCardItem}
-        sliderWidth={SLIDER_WIDTH}
-        itemWidth={ITEM_WIDTH}
+       // sliderWidth={SLIDER_WIDTH}
+       //itemWidth={ITEM_WIDTH}
         inactiveSlideShift={0}
         onSnapToItem={(index) => setIndex(index)}
         useScrollView={true}

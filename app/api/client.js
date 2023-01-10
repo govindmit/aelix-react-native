@@ -9,10 +9,11 @@ const apiClient = create({
 
 //const {user, token} = response.data;
 apiClient.addAsyncRequestTransform(async (request) => {
-  const token = await authStorage.getToken();
-  if (!token) return;
-  request.headers["x-auth-token"] = token;
+  const authToken = await authStorage.getToken();
+  if (!authToken) return;
+  request.headers["x-auth-token"] = authToken;
 });
+
 
 const get = apiClient.get;
 apiClient.get = async (url, params, axiosConfig) => {

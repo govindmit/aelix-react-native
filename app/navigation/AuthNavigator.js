@@ -8,7 +8,7 @@ import AppNavigator from "../navigation/AppNavigator";
 
 const Stack = createNativeStackNavigator();
 
-const AuthNavigator = () => (
+const AuthNavigator = (props) => (
   <Stack.Navigator>
   <Stack.Screen name="Login" options={{ headerShown: false }} component={LoginScreen}/>
  <Stack.Screen name="Welcome" options={{ headerShown: false }} component={WelcomeScreen}/> 
