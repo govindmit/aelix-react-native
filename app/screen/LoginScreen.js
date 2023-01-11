@@ -55,8 +55,6 @@ function LoginScreen({icon, navigation}) {
   const [text, setText] = useState('');
   const [data, setData] = useState([]);
 
-
-
 //   const handleSubmit = () => {
 //    // e.preventDefault();
 //     const item = { 
@@ -68,9 +66,37 @@ function LoginScreen({icon, navigation}) {
 //       // onPress={() => timer()}
 //       .then(response => console.log(response.data));
 // //};
-//  }
 
-  const handleSubmit = async ({ username, password }) => {
+function logins(e) {
+  e.preventDefault();
+
+  let item = { email, password }
+  console.warn("item", item, "oddd")
+
+  const data = {
+    email: email,
+    password: password,
+
+  }
+  axios.post('/signIn', data).then(
+    res => {
+      const user = (res.data)
+
+localStorage.setItem("userdata", JSON.stringify(user))
+
+      this.student = JSON.parse(localStorage.getItem("userdata"));
+      localStorage.setItem("token", res.data.token);
+
+      console.log(res)
+    }
+
+  ).catch(
+    err => {
+      console.log(err)
+    }
+  )
+
+}const handleSubmit = async ({ username, password }) => {
     const result = await authApi.login(username, password);
     if (!result.ok) return setLoginFailed(true);
     setLoginFailed(false);
@@ -156,11 +182,11 @@ timer=()=> {
           <Text style={styles.text}>Remember Me</Text>
         </View>
        
-        <SubmitButton
+        {/* <SubmitButton
           title="Login"
           onPress={() => navigation.navigate("AppNavigator")}
           // onPress={() => timer()}
-        />
+        /> */}
        {/* <AppButton 
        onPress={() =>handleSubmit()}
        title="Login"></AppButton>   */}
@@ -172,8 +198,8 @@ timer=()=> {
       />  */}
          <Button
         title="Loginss"
-        onPress={() => timer()}
-        //onPress={() => navigation.navigate("Tab")}
+       // onPress={() => timer()}
+        onPress={() => navigation.navigate("Home")}
       /> 
     </Screens>
    </KeyboardAwareScrollView>

@@ -19,14 +19,17 @@ import Cards from './Cards';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Dropdown from '../component/Dropdown';
 import { Avatar, Button, Card} from 'react-native-paper';
+//import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import axios from 'axios';
 import {  CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
 //import { Card } from '@rneui/themed';
 
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+
 
 export default function DashboardScreen({ className }) {
   const [data, setData] = useState();
+  const [list, setList] = useState([]);
+  const [user, setUser] = useState([]);
   const [selected, setSelected] = useState("");
   const [country, setCountry] = useState('1');
   const [count, setCount] = useState(0);
@@ -41,11 +44,10 @@ export default function DashboardScreen({ className }) {
   //         }, []);
   //         console.log(">>>>>>>>>>>>>>>>>",data)
 
-
-
-          useEffect(() => {
+       useEffect(() => {
             getClass();
-             getStudent();
+            getStudent();
+            getUser();
           }, []);
                  
                  async function getClass() {
@@ -55,34 +57,60 @@ export default function DashboardScreen({ className }) {
                  }
                   //console.log(">>>>>>>>>>>>>>>>>",data)
                   
-                 // const AuthStr = 'Bearer ' + USER_TOKEN;
+                  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpob24yNUBnbWFpbC5jb20iLCJfaWQiOiI2MzE1ZGY5OTU5ZDNiZWNmYTdiMWIzYjYiLCJpYXQiOjE2NzM0MTYxMTAsImV4cCI6MTY3MzUwMjUxMH0.Rzy_jDeMU03URE2wACpBuAROe0HXgCm3XFwRzD2S_iQ'
                   async function getStudent() {
                     await axios.get('https://api-aelix.mangoitsol.com/api/student',{
-                      // headers: {
-                      //   'Authorization' : `Bearer ${localStorage.setItem('access_token')}`
-                      // }
-                  })
-                         .then((response) => {console.log(response.data)});
-                        //.then((response) => { setData(response.data.data)});
+                       headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization' : `Basic ${token}` 
+                        // 'Authorization' : `Bearer ${localStorage.setItem('access_token')}`
+                       }
+                   })
+                     //.then((response) => {console.log(response.data.data)});
+                    .then((response) => { setList(response.data.data)});
                    }
-                   //console.log(">>>>>>>>>>>>>>>>>",data)
 
+                   async function getUser() {
+                    await axios.get('https://api-aelix.mangoitsol.com/api/user/6315df9959d3becfa7b1b3b6',{
+                       headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization' : `Basic ${token}` 
+                     }
+                   })
+                    // .then((response) => {console.log(response.data.data)});
+                    //.then((response) => { setUser(response.data.data)});
+                   }
 
-          
+ {/* {  
+             list.map((item, index) => {
+                  console.log("????????????????????????", list)
+                  return(
+                <View key={item.index}> 
+                <Text>{item.name}{item.lastName}</Text>  
+                 </View>  
+                  )
+                     
+                   }   
+                   )} */}
 
-   return (
+      const LeftContent = props =><Image source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}} style={{width: 50, height : 50,backgroundColor:"pink", padding:10 , borderRadius :30 }}/>   
+  
+    return (
     <>  
-     <Screens style={styles.screen}>
-     <SafeAreaView style={styles.containe}>
-        <View>
-          {/* {  
-             data.map((item) => 
-                    //console.log("????????????????????????", item.className)
-                    <View>
-                     <Text>
-                     <Dropdown label="All " data={data} onSelect={setSelected}/>
-                  </Text>  
-                     </View>
+        <Screens style={styles.screen}>
+        <SafeAreaView style={styles.containe}>
+        <ScrollView>
+            <View>
+              {/* {  
+             list.map((item, index) => {
+                  console.log("????????????????????????", list)
+                  return(
+                <View key={item.index}> 
+                <Text>{item.name}{item.lastName}</Text>  
+                 </View>  
+                  )
+                     
+                   }   
                    )} */}
           </View>
         
@@ -91,38 +119,61 @@ export default function DashboardScreen({ className }) {
       <Dropdown className="ALL"
        data={data} onSelect={setSelected}/>
       </Text>    
-
+   {/* <View> */}
+      
        <View style={styles.container}>
-   
+       {  
+             list.map((item, index) => {
+                 //console.log("????????????????????????", list)
+                  return(
+             <> 
+             
          <Card style={styles.card }>
-          <Text style={styles.header}>Total Students</Text>
-          <Text style={styles.number}>150</Text>
+          <Text style={styles.headers}>Total Students</Text>
+          <Text style={styles.number}>{item.totalcount}14</Text>
         </Card>
-
+      
         <Card style={styles.card }>
           <Text style={styles.headers}>Present Students</Text>
-          <Text style={styles.number}>140</Text>
+          <Text style={styles.number}>0</Text>
         </Card>
+       
+        
+        </>
+          )
+            }
+            )}
        </View>
+         
 
      <View style={styles.container}>
-   
+     {  
+             list.map((item, index)=> {
+                 //console.log("????????????????????????", list)
+                  return(
+             <> 
+             
        <Card style={styles.card }>
           <Text style={styles.headers}>Absent Students</Text>
-          <Text style={styles.number}>4</Text>
+          <Text style={styles.number}>12</Text>
         </Card>
 
         <Card style={styles.card }>
           <Text style={styles.headers}>Out of Students</Text>
-          <Text style={styles.number}>4</Text>
+          <Text style={styles.number}>0</Text>
         </Card>
+        </>
+          )
+            }
+            )}
       </View>
+     
 
-      <View>
-        <Card style={styles.cardb}>
+      <View style={{padding :10}}>
+      <Card style={styles.cardb}>
+      <ScrollView>
         <Card.Content style ={{ flexDirection : "row"}}>
-          
-          <TouchableOpacity
+         <TouchableOpacity
         // onPress={onPress}
             >
           <Text style={styles.contain}>Absent</Text>
@@ -133,12 +184,34 @@ export default function DashboardScreen({ className }) {
         <Text style={styles.out}>Out Of Class</Text>
         </TouchableOpacity>
        </Card.Content>
-         
-        <Card.Title title="Manika Jhon" subtitle="Class A" left={LeftContent} 
-        style={styles.divider }/>
+       {  
+        list.map((item, index) => {
+         return(
+        <> 
+    
+       {/* {
+        const LeftContent = props =><Image source={{uri: item.image}} style={{width: 50, height : 30,backgroundColor:"pink"  }}/>   
+       }  */}
+        <Card.Title 
+         key={item.index}
+         roundAvatar
+          // title={u.name}
+         // leftAvatar={{ source: { uri:  item.image } }}
+      //  const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+        left={LeftContent} 
+        title={item.name} 
+        subtitle={item.assignClass.className} 
+        style={styles.divider}
+        />
+          
+         {/* left={item.image}  */}
         
-        <Card.Title title="Mike" subtitle="Class A" left={LeftContent} style={styles.divider }/>
-        <Card.Title title="Sam" subtitle="Class A" left={LeftContent} style={styles.divider }/>
+       
+       </>
+       )
+       }
+       )}
+       </ScrollView>
         </Card>
 
         {/* <Card>
@@ -166,8 +239,9 @@ export default function DashboardScreen({ className }) {
             />
           </CardAction>
         </Card> */}
-       
+    
         </View>
+        </ScrollView>
         </SafeAreaView> 
        </Screens>
         </>
@@ -187,14 +261,16 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    top: 20,
+    paddingTop: 20,
     flexDirection: "row",
-    bottom:0
-    //padding: 10,
+    bottom:0,
+    //height: 100
+    padding: 10,
    },
   card: {
-    marginRight:24,
-     height: 130,
+
+   marginRight:24,
+     height: 100,
      width: 160,
      borderRadius:1,
      top:0
@@ -209,7 +285,8 @@ const styles = StyleSheet.create({
    },
   headers: {
     color: colors.black,
-    fontSize: 18,
+    fontSize: 16,
+    fontWeight: "bold",
     textAlign:"center",
     justifyContent: "center",
     margin: 12,
@@ -219,7 +296,7 @@ const styles = StyleSheet.create({
     color:  colors.blue,
     fontSize: 30,
     fontWeight: 'bold',
-    margin: 10,
+    marginBottom: 10,
     textAlign:"center"
    },
    divider :{
@@ -254,6 +331,11 @@ containers: {
   //     flexDirection: 'column',
   //   }, 
     cardb :{
+      // position: 'absolute',
+     width: 344,
+      marginTop: 10,
+     //margin: 16,
+      height: 365,
       borderRadius:0,
       marginRight:10,
     },
