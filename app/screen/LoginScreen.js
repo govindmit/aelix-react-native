@@ -199,7 +199,7 @@ timer=()=> {
          <Button
         title="Loginss"
        // onPress={() => timer()}
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate("Tab")}
       /> 
     </Screens>
    </KeyboardAwareScrollView>

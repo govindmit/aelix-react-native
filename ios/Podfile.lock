@@ -23,13 +23,13 @@ PODS:
   - EXJSONUtils (0.4.0)
   - EXManifests (0.4.0):
     - EXJSONUtils
-  - Expo (47.0.10):
+  - Expo (47.0.12):
     - ExpoModulesCore
   - ExpoImagePicker (14.0.2):
     - ExpoModulesCore
   - ExpoKeepAwake (11.0.1):
     - ExpoModulesCore
-  - ExpoModulesCore (1.1.0):
+  - ExpoModulesCore (1.1.1):
     - React-Core
     - ReactCommon/turbomodule/core
   - EXSecureStore (12.0.0):
@@ -273,6 +273,8 @@ PODS:
     - glog
   - react-native-netinfo (9.3.5):
     - React-Core
+  - react-native-pager-view (6.0.1):
+    - React-Core
   - react-native-safe-area-context (4.4.1):
     - RCT-Folly
     - RCTRequired
@@ -441,6 +443,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
+  - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -553,6 +556,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
+  react-native-pager-view:
+    :path: "../node_modules/react-native-pager-view"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-perflogger:
@@ -613,10 +618,10 @@ SPEC CHECKSUMS:
   EXImageLoader: 84b65e6bd9d3345d6fbb3ab936a546c54496a64d
   EXJSONUtils: 09aef2c1fba1a116ca8c73a2c8299aac00d96b43
   EXManifests: 347f49430b63444579aa013f0ad057d16b8d1cc8
-  Expo: a694d89d2461fdfc6b977bf489bf7d341ed03bca
+  Expo: f48d305fda3e4e501d686e6bad7d8c8373828279
   ExpoImagePicker: d2a1cea4023008ae2fb0d95f33422b80772cc76e
   ExpoKeepAwake: 69b59d0a8d2b24de9f82759c39b3821fec030318
-  ExpoModulesCore: 089e1ac0f0edee4dd0af0eb4e3f7b44d72cc418d
+  ExpoModulesCore: 485dff3a59b036a33b6050c0a5aea3cf1037fdd1
   EXSecureStore: daec0117c922a67c658cb229152a9e252e5c1750
   EXSplashScreen: 3e989924f61a8dd07ee4ea584c6ba14be9b51949
   EXStructuredHeaders: fb774e45eac2e5d62ba40b28176bfbfba61b843e
@@ -644,6 +649,7 @@ SPEC CHECKSUMS:
   React-jsinspector: badd81696361249893a80477983e697aab3c1a34
   React-logger: fdda34dd285bdb0232e059b19d9606fa0ec3bb9c
   react-native-netinfo: 85b2a435c4d3705c08b0c42ff2d6ef6b9622ea0a
+  react-native-pager-view: 3051346698a0ba0c4e13e40097cc11b00ee03cca
   react-native-safe-area-context: 99b24a0c5acd0d5dcac2b1a7f18c49ea317be99a
   React-perflogger: e68d3795cf5d247a0379735cbac7309adf2fb931
   React-RCTActionSheet: 05452c3b281edb27850253db13ecd4c5a65bc247
