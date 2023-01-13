@@ -20,6 +20,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Dropdown from '../component/Dropdown';
 import { Avatar, Button, Card} from 'react-native-paper';
 import {  CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 //import CarouselCards from './CarouselCards';
 //import Cards from './Cards';
 //import Card from "../component/Card";
@@ -31,10 +32,8 @@ export default function DashboardScreen(props,{ className }) {
 const [data, setData] = useState();
 const [list, setList] = useState([]);
 const [selected, setSelected] = useState("");
-//const [country, setCountry] = useState('1');
 const [count, setCount] = useState(0);
 const onPress = () => setCount(prevCount => prevCount + 1);
-
 
 // useEffect(() => {
 //         axios.get('https://api-aelix.mangoitsol.com/api/getClass')
@@ -54,7 +53,7 @@ const onPress = () => setCount(prevCount => prevCount + 1);
     .then((response) => { setData(response.data.data)});
     }
     //console.log(">>>>>>>>>>>>>>>>>",data)
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpob24yNUBnbWFpbC5jb20iLCJfaWQiOiI2MzE1ZGY5OTU5ZDNiZWNmYTdiMWIzYjYiLCJpYXQiOjE2NzM1MDQ2ODgsImV4cCI6MTY3MzU5MTA4OH0.Re0zU2HFZDIvKkJsmqu3SQwxLWYKyKFUSjUvBZ_Ztfk'
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpob24yNUBnbWFpbC5jb20iLCJfaWQiOiI2MzE1ZGY5OTU5ZDNiZWNmYTdiMWIzYjYiLCJpYXQiOjE2NzM1OTI5NDEsImV4cCI6MTY3MzY3OTM0MX0.yDJ5UF1edII5zRT3p6SwdVi9PAHw-fIN43v0M_rxyuc'
     async function getStudent() {
     await axios.get('https://api-aelix.mangoitsol.com/api/student',{
     headers: {
@@ -69,27 +68,54 @@ const onPress = () => setCount(prevCount => prevCount + 1);
    
 //const LeftContent = props =><Image source={{uri: item.image}} style={{width: 50, height : 50,backgroundColor:"pink", padding:10 , borderRadius :30 }}/>   
 
+function HomeScreen() {
+    return (
+        <View style={{  justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Home!</Text>
+    </View>
+    );
+  }
+  
+  function SettingsScreen() {
+    return (
+       <Card style={styles.cardb}>
+       <ScrollView>
+           <Card.Content style ={{ flexDirection : "row"}}>
+         
+               {/* <Text style={styles.contain}>Absent</Text> */}
+               <Text style={styles.out}>Out Of Class</Text>
+           </Card.Content>
+           {/* {  
+           list.map((item,id) => {
+           return(
+           <>  */}
+           <View style={{ flexDirection: "row", padding:0, }}>
+           <Image source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}} style={ styles.image}/>   
+           <Card.Title 
+             title="herryy" 
+               subtitle="i work on this "
+               style={styles.divider}
+               />
+           </View>
+           {/* </>
+           )
+           }
+           )} */}
+       </ScrollView>
+    </Card>
+    );
+  }
+  
+
+const Tab = createMaterialTopTabNavigator();
+
 return (
 <>  
 <Screens style={styles.screen}>
     <SafeAreaView style={styles.containe}>
         <ScrollView>
-            <View>
-                {/* {  
-                list.map((item, index) => {
-                console.log("????????????????????????", list)
-                return(
-                <View key={item.index}>
-                    <Text>{item.name}{item.lastName}</Text>
-                </View>
-                )
-                }   
-                )} */}
-            </View>
-            <Text>
-                FILTER BY: 
-                <Dropdown className="ALL"
-                    data={data} onSelect={setSelected}/>
+           <Text> FILTER BY: <Dropdown className="ALL"
+           data={data} onSelect={setSelected}/>
             </Text>
             <View style={styles.container}>
                 {  
@@ -127,7 +153,13 @@ return (
                 }
                 )}
             </View>
-            <View style={{padding :10}}>
+
+        <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Out Of Class" component={SettingsScreen} />
+        </Tab.Navigator>
+      
+        <View style={{padding :10}}>
                 <Card style={styles.cardb}>
                     <ScrollView>
                         <Card.Content style ={{ flexDirection : "row"}}>
@@ -154,50 +186,21 @@ return (
                             subtitle={item.assignClass.className} 
                             style={styles.divider}
                             />
-            </View>
-            </>
-            )
-            }
-            )}
-            </ScrollView>
-            </Card>
-            {/* 
-            <Card>
-                <CardImage 
-                source={{uri: 'http://placehold.it/480x270'}} 
-                title="Above all i am here"
-                />
-                <CardTitle 
-                    title="This is a title" 
-                    subtitle="This is subtitle"
-                    />
-                <CardContent text="Your device will reboot in few seconds once successful, be patient meanwhile" />
-                <CardAction 
-                    separator={true} 
-                    inColumn={false}>
-                    <CardButton
-                        onPress={() =>
-                    {}}
-                    title="Push"
-                    color="blue"
-                    />
-                    <CardButton
-                        onPress={() =>
-                    {}}
-                    title="Later"
-                    color="blue"
-                    />
-                </CardAction>
-            </Card>
-            */}
-            </View>
-        </ScrollView>
+                        </View>
+                        </>
+                        )
+                        }
+                        )}
+                    </ScrollView>
+                 </Card>
+         </View>  
+       </ScrollView>
     </SafeAreaView>
 </Screens>
 </>
 );
 }
-const styles = StyleSheet.create({
+ const styles = StyleSheet.create({
 containe: {
 flex: 1,
 paddingTop: StatusBar.currentHeight,
@@ -321,3 +324,34 @@ color : colors.darkgray,
 //   fontWeight: 'bold',
 // },
 });
+//
+ {/* 
+            <Card>
+                <CardImage 
+                source={{uri: 'http://placehold.it/480x270'}} 
+                title="Above all i am here"
+                />
+                <CardTitle 
+                    title="This is a title" 
+                    subtitle="This is subtitle"
+                    />
+                <CardContent text="Your device will reboot in few seconds once successful, be patient meanwhile" />
+                <CardAction 
+                    separator={true} 
+                    inColumn={false}>
+                    <CardButton
+                        onPress={() =>
+                    {}}
+                    title="Push"
+                    color="blue"
+                    />
+                    <CardButton
+                        onPress={() =>
+                    {}}
+                    title="Later"
+                    color="blue"
+                    />
+                </CardAction>
+            </Card>
+            */}
+           
