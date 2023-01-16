@@ -53,7 +53,7 @@ const onPress = () => setCount(prevCount => prevCount + 1);
     .then((response) => { setData(response.data.data)});
     }
     //console.log(">>>>>>>>>>>>>>>>>",data)
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpob24yNUBnbWFpbC5jb20iLCJfaWQiOiI2MzE1ZGY5OTU5ZDNiZWNmYTdiMWIzYjYiLCJpYXQiOjE2NzM1OTI5NDEsImV4cCI6MTY3MzY3OTM0MX0.yDJ5UF1edII5zRT3p6SwdVi9PAHw-fIN43v0M_rxyuc'
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpob24yNUBnbWFpbC5jb20iLCJfaWQiOiI2MzE1ZGY5OTU5ZDNiZWNmYTdiMWIzYjYiLCJpYXQiOjE2NzM4NjI4MTIsImV4cCI6MTY3Mzk0OTIxMn0.JkT5exFlBO71SHdGYb3_kDv36W3wlXKxkLiLZqFT-OI'
     async function getStudent() {
     await axios.get('https://api-aelix.mangoitsol.com/api/student',{
     headers: {
@@ -118,29 +118,29 @@ return (
            data={data} onSelect={setSelected}/>
             </Text>
             <View style={styles.container}>
-                {  
+                {/* {  
                 list.map((item,id) => {
                 return(
-                <> 
+                <>  */}
                 <Card style={styles.card }>
                     <Text style={styles.headers}>Total Students</Text>
-                    <Text style={styles.number} key={item.id}>{item.totalcount}14</Text>
+                    <Text style={styles.number}>14</Text>
                 </Card>
                 <Card style={styles.card }>
                     <Text style={styles.headers}>Present Students</Text>
                     <Text style={styles.number}>0</Text>
                 </Card>
-                </>
+                {/* </>
                 )
                 }
-                )}
+                )} */}
             </View>
             <View style={styles.container}>
-                {  
+                {/* {  
                 list.map((item,id)=> {
                 return(
-                <> 
-                <Card style={styles.card } key={item.id}>
+                <>  */}
+                <Card style={styles.card }>
                     <Text style={styles.headers}>Absent Students</Text>
                     <Text style={styles.number}>12</Text>
                 </Card>
@@ -148,10 +148,10 @@ return (
                     <Text style={styles.headers}>Out of Students</Text>
                     <Text style={styles.number}>0</Text>
                 </Card>
-                </>
+                {/* </>
                 )
                 }
-                )}
+                )} */}
             </View>
 
         <Tab.Navigator>

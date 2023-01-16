@@ -1,4 +1,4 @@
-import React, { useEffect, useState , useRef } from 'react';
+import React, { useEffect,useState,useRef } from 'react';
 import { StyleSheet,
    Image,
     Text, 
@@ -32,7 +32,7 @@ import colors from '../config/colors';
 import CheckBox from 'expo-checkbox';
 import TextBox from 'react-native-password-eye'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { NavigationActions } from "react-native-navigation";
+//import { NavigationActions } from "react-native-navigation";
 import AppButton from '../component/AppButton';
 import AuthNavigator from "../navigation/AuthNavigator";
 import ActivityIndicator from "../component/ActivityIndicator";

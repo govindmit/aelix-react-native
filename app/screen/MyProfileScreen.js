@@ -1,215 +1,139 @@
 import React, { useState, useEffect } from "react";
-import { Text, View,StyleSheet,StatusBar ,ScrollView,TouchableOpacity,Image} from 'react-native';
+import { Text, View,StyleSheet,StatusBar ,ScrollView,TouchableOpacity,Image,TextInput} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { Avatar, Button, Card} from 'react-native-paper';
+import {  Button, Card} from 'react-native-paper';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import colors from "../config/colors";
-
-
-
-function HomeScreen() {
-   return (
-    <View style={{padding :0}}>
-                <Card style={styles.cardb}>
-                    <ScrollView>
-                        <Card.Content style ={{ flexDirection : "row"}}>
-                      
-                            <Text style={styles.contain}>Absent</Text>
-                            {/* <Text style={styles.out}>Out Of Class</Text> */}
-                        </Card.Content>
-                        {/* {  
-                        list.map((item,id) => {
-                        return(
-                        <>  */}
-                        <View style={{ flexDirection: "row", padding:0, }}>
-                        <Image source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}} style={ styles.image}/>   
-                        <Card.Title 
-                          title="herryy" 
-                            subtitle="i work on this "
-                            style={styles.divider}
-                            />
-                        </View>
-                        {/* </>
-                        )
-                        }
-                        )} */}
-                    </ScrollView>
-                 </Card>
-      
-
-     </View>
-   );
- }
- 
- function SettingsScreen() {
-   return (
-      <Card style={styles.cardb}>
-      <ScrollView>
-          <Card.Content style ={{ flexDirection : "row"}}>
-        
-              {/* <Text style={styles.contain}>Absent</Text> */}
-              <Text style={styles.out}>Out Of Class</Text>
-          </Card.Content>
-          {/* {  
-          list.map((item,id) => {
-          return(
-          <>  */}
-          <View style={{ flexDirection: "row", padding:0, }}>
-          <Image source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}} style={ styles.image}/>   
-          <Card.Title 
-            title="herryy" 
-              subtitle="i work on this "
-              style={styles.divider}
-              />
-          </View>
-          {/* </>
-          )
-          }
-          )} */}
-      </ScrollView>
-   </Card>
-   );
- }
- const Tab = createMaterialTopTabNavigator();
+import {
+  AppForm,
+  AppFormField,
+  ErrorMessage,
+  SubmitButton,
+} from "../component/forms";
+import * as Yup from "yup";
+import { Stack, Avatar } from "@react-native-material/core";
+import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import { Entypo ,FontAwesome} from '@expo/vector-icons';
+import AppTextInput from "../component/AppTextInput";
+import axios from 'axios';
 
 export default function MyProfileScreen() {
+  const [data, setData] = useState();
+  const [list, setList] = useState([]);
+  const [user, setUser] = useState([]);
+  const [text, onChangeText] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    getUser();
+    }, []);
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpob24yNUBnbWFpbC5jb20iLCJfaWQiOiI2MzE1ZGY5OTU5ZDNiZWNmYTdiMWIzYjYiLCJpYXQiOjE2NzM4NDIwNDAsImV4cCI6MTY3MzkyODQ0MH0.QYPiz8x3oOCBJQpTMTA2Ft4qhP-jI3CxLV6SwNFrZAI'
+    async function getUser() {
+      await axios.get('https://api-aelix.mangoitsol.com/api/user/6315df9959d3becfa7b1b3b6',{
+      headers: {
+      'Content-Type': 'application/json',
+      'Authorization' : `Basic ${token}` 
+      }
+      })
+       //.then((response) => {console.log(response.data.data)});
+       .then((response) => { setUser(response.data.data)});
+      }
+
+
    return (
-<>
-{/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}> */}
-{/* <Text style={{fontSize:16,fontWeight:'700'}}>Chat Screen</Text> */}
-  <Tab.Navigator>
-        <Tab.Screen style={styles.contain} name="Absent" component={HomeScreen} />
-        <Tab.Screen  style={styles.out} name="Out Of Class" component={SettingsScreen} />
-      </Tab.Navigator>
+     <>
+    <View style={styles.container}>
+      <Image source={require("../assets/user.png")} style={{position:'relative'}}/>
+      <View  style={styles.camera}>
+      <Entypo name="camera" size={24} color="white"/>
+      </View>
+         {  
+            user.map((item,id) => {
+                     return(
+                      <>
+                  <View key={item.id} style={styles.text}>
+                  <FontAwesome name="edit" size={30} color={colors.darkgray} style={{marginLeft:200,top:30}}/>     
+                   <Text  style={{fontSize:18,fontWeight:"bold",paddingBottom:5}}>{item.name}</Text> 
+                   <Text  style={{fontSize:18,color:colors.darkgray}}>{item.username}</Text> 
+                   </View>   
+                      </>
+                       )
+                       }
+                       )}
 
+       </View>
+       
+      <View style={{marginLeft:20}}>
+      <Text style={styles.contain}>My Address</Text> 
+      <Text  style={{fontSize:18}}>Street Address</Text> 
+      {/* <AppForm // for input validation
+       style={styles.form}
+         >
+       <AppFormField
+          autoCapitalize="none"
+          autoCorrect={false}
+          //icon="account"
+          style={{backgroundColor:colors.white,marginRight:10}}
+          name="username"
+          value={username}
+          onChange={(e) => { setUsername(e.target.value) }}
+          placeholder="UserName"
+          textContentType="username"
+        />
+      
+         <AppTextInput placeholder="Password"/> 
+      </AppForm> */}
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={text}
+        placeholder="email"
+      />
+       
+      </View>
     </>
-  );
-}
+       );
+     }
+ 
 const styles = StyleSheet.create({
-   containe: {
-   flex: 1,
-   paddingTop: StatusBar.currentHeight,
+ container: {
+      paddingTop: 20,
+      paddingBottom: 20,
+      flexDirection : "row"
+    },
+  camera:{
+    position:'absolute',
+    marginTop:80,
+    marginLeft:80,
+    backgroundColor: "red", 
+    width: 40, 
+    height:40,
+    borderRadius:"100%",
+   display:"flex",
+   justifyContent:"center",
+   alignItems:"center",
+   overFlow:"hidden"
+  },
+  text:{
+    width:"100%", 
+    marginLeft:40,
+  },
+  contain : {
+    paddingBottom:8,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color : colors.blue,
    },
-   screen: {
-   flex: 1,
-   padding: 10,
-   backgroundColor: colors.grayshade,
-   justifyContent: 'center',
-   },
-   container: {
-   flex: 1,
-   paddingTop: 20,
-   flexDirection: "row",
-   bottom:0,
-   //height: 100
-   padding: 10,
-   },
-   card: {
-   marginRight:24,
-   height: 100,
-   width: 160,
-   borderRadius:1,
-   top:0
-   },
-   header: {
-   color: colors.black,
-   fontSize: 18,
-   textAlign:"center",
-   justifyContent: "center",
-   margin: 20,
-   },
-   headers: {
-   color: colors.black,
-   fontSize: 16,
-   fontWeight: "bold",
-   textAlign:"center",
-   justifyContent: "center",
-   margin: 12,
-   },
-   number: {
-   color:  colors.blue,
-   fontSize: 30,
-   fontWeight: 'bold',
-   marginBottom: 10,
-   textAlign:"center"
-   },
-   divider :{
-   borderBottomWidth :1,
-    borderBottomColor: colors.gray,
-   width:240,
-   height:20,
-   //marginLeft: 5,
-   },
-   image :{
-   width: 55, 
-   height : 55,
-   backgroundColor:"pink" ,
-   borderRadius :50 ,
-   margin: 20,
-   },
-   containers: {
-   //flex: 1,
-   flexDirection: "coloum",
-   width:345,
-   height:260,
-   borderRadius:0
-   },
-   paragraph: {
-   fontSize: 18,
-   fontWeight: 'bold',
-   textAlign: 'center',
-   margin: 20,
-   //marginLeft: 10
-   },
-   scrollView: {
-   backgroundColor: 'pink',
-   marginHorizontal: 20,
-   },
-   // dropdown:{
-   //   flex: 1,
-   //     backgroundColor: '#fff',
-   //     alignItems: 'center',
-   //     justifyContent: 'center',
-   //     flexDirection: 'column',
-   //   }, 
-   cardb :{
-   // position: 'absolute',
-   width: 344,
-   marginTop: 10,
-   //margin: 16,
-   height: 320,
-   borderRadius:0,
-   marginRight:10,
-   },
-   contain : {
-   flexDirection : "row",
-   textAlign: 'left',
-   margin: 3,
-   fontSize: 19,
-   fontWeight: 'bold',
-   color : colors.blue,
-   },
-   out : {
-   // flexDirection : "row",
-   alignItems: "center",
-   backgroundColor: colors.lightgray,
-   padding: 10,
-   textAlign: 'center',
-   marginLeft: 23,
-   fontSize: 16,
-   fontWeight: 'bold',
-   color : colors.darkgray,
-   },
-   // class :{
-   //   fontWeight:'200',
-   //    left:20,
-   //   textAlign:'left',
-   //   justifyContent: "left",
-   //   fontSize: 20,
-   //   fontWeight: 'bold',
-   // },
-   });
-   
-
-
-
+   input: {
+    height: 40,
+    //margin: 12,
+    borderWidth: 1,
+    borderRadius:10,
+    padding: 10,
+    top:20,
+    right:10,
+    backgroundColor: "white"
+  },
+})

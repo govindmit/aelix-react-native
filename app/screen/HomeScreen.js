@@ -5,7 +5,7 @@ import { StyleSheet, Text, View,Image,TouchableOpacity, Modal,Pressable,SafeArea
 import { NavigationContainer , DrawerActions } from "@react-navigation/native";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import ChatScreen from "./ChatScreen";
-import ChangePassScreen from "./ChangePassScreen";
+import ChangePasswordScreen from "./ChangePasswordScreen";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -101,9 +101,9 @@ export default function HomeScreen({navigation}) {
                   : drawer.name==='Students' ? StudentsScreen
                  : drawer.name==='Counsellor' ? CounsellorScreen
                  : drawer.name==='Pin' ? PinScreen
-                  : drawer.name==='ChangePass' ? ChangePassScreen
+                  : drawer.name==='ChangePassword' ? ChangePasswordScreen
                   : drawer.name==='Chat' ? ChatScreen
-                  : PinScreen
+                  : MyProfileScreen
            }
             /> 
            )

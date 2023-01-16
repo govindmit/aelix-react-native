@@ -8,7 +8,7 @@ import navigation from "./rootNavigation";
 import ChatScreen from "../screen/ChatScreen";
 import HomeScreen from '../screen/HomeScreen';
 import PinScreen from '../screen/PinScreen';
-import PasswordScreen from '../screen/PasswordScreen';
+import ChangePasswordScreen from '../screen/ChangePasswordScreen';
 import MyProfileScreen from '../screen/MyProfileScreen';
 
 const Tab = createBottomTabNavigator();
@@ -60,7 +60,7 @@ return (
       ),
     }}/>
      <Tab.Screen name="Password" 
-  component={PasswordScreen} 
+  component={ChangePasswordScreen} 
   options={{
      headerShown: false,
       tabBarIcon: ({ color, size }) => (
