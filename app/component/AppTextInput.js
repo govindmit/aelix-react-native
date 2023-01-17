@@ -26,9 +26,12 @@ const styles = StyleSheet.create({
         borderRadius :10,
         borderWidth: 1,
         borderColor: colors.gray,
+        backgroundColor:"#FFFFFF",
         flexDirection : 'row',
         padding: 15,
         marginVertical : 10,
+        marginHorizontal: 0,
+       // marginRight : 10 
         },
         icon: {
         marginRight : 10 
